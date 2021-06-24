@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100&display=swap"
+        rel="stylesheet">
+
+    <title>Vanila To-Do List</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>Vanila JavaScript<br /> To Do List</h1>
+            <input type="text" name="" id="add">
+            <button id="addTask" class="addButton">ADD HERE</button>
+        </div>
+
+        <div class=body>
+            <div class="left">
+                <h1 style="text-align:center; border-bottom:1px solid black;">Incomplete<br /> Task
+                </h1>
+                <div class="incomplete">
+
+                    <ul id="items">
+                        <li id="item"><label for=""><input type="checkbox">Task 1</label></li>
+                        <li id="item"><label for=""><input type="checkbox">Task 2</label></li>
+                        <li id="item"><label for=""><input type="checkbox">Task 3</label></li>
+                        <li id="item"><label for=""><input type="checkbox">Task 4</label></li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="right">
+                <h1 style="text-align:center; border-bottom:1px solid black;">Complete<br /> Task</h1>
+                <div class="complete">
+                    <ul class="">
+                        <li>dfad</li>
+                    </ul>
+                    <button type="button">Delete</button>
+                </div>
+            </div>
+
+        </div>
+        <script type="text/javascript" src="script.js"></script>
+</body>
+
+</html>
