@@ -1,70 +1,69 @@
-// var selections 
 
-let inputSelection = document.getElementById("add");
-
-let IncompleteItems = document.getElementById("items");
-
-let completeItems = document.getElementById("complete ul");
+let newTask = document.querySelector('#new-task');
+let form = document.querySelector('form');
+let todoUl = document.querySelector('#items');
+let completeUl = document.querySelector('.complete-list ul');
 
 
 
+let createTask = function (task) {
+    let listItem = document.createElement('li');
+    let checkBox = document.createElement('input');
+    let label = document.createElement('label');
 
+    label.innerText = task;
+    checkBox.type = 'checkbox';
 
+    listItem.appendChild(checkBox);
+    listItem.appendChild(label);
 
+    return listItem;
+}
 
+let addTask = function (event) {
+    event.preventDefault();
+    let listItem = createTask(newTask.value);
+    todoUl.appendChild(listItem);
+    newTask.value = "";
 
+    bindInCompleteItems(listItem, completeTask);
+}
 
+let completeTask = function () {
+    let listItem = this.parentNode;
+    let deleteBtn = document.createElement('button');
+    deleteBtn.innerText = 'Delete';
+    deleteBtn.className = 'delete';
+    listItem.appendChild(deleteBtn);
 
+    let checkBox = listItem.querySelector('input[type="checkbox"]');
+    checkBox.remove();
+    completeUl.appendChild(listItem);
+    bindCompleteItems(listItem, deleteTask);
+}
 
+let deleteTask = function () {
+    let listItem = this.parentNode;
+    let ul = listItem.parentNode;
+    ul.removeChild(listItem);
+}
 
+let bindInCompleteItems = function (taskItem, checkboxClick) {
+    let checkBox = taskItem.querySelector('input[type="checkbox"]');
+    checkBox.onchange = checkboxClick;
+}
 
+let bindCompleteItems = function (taskItem, deleteButtonClick) {
+    let deleteButton = taskItem.querySelector('.delete');
+    deleteButton.onclick = deleteButtonClick;
+}
 
+for (let i = 0; i < todoUl.children.length; i++) {
+    bindInCompleteItems(todoUl.children[i], completeTask);
+}
 
+for (let i = 0; i < completeUl.children.length; i++) {
+    bindCompleteItems(completeUl.children[i], deleteTask);
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// document.getElementById("addTask").addEventListener("click", function () {
-// const checkBox = document.getElementById("add").value;
-// const list = document.getElementById("task-list");
-// const newlist = document.getElementById("task-list").innerText = checkBox;
-// document.getElementById("task-list").appendChild(add.value);
-// })
-
-//  1.  nextElementSibling
-// 2.   previousElementSibling
-
-// const parent = document.getElementById("item");
-// const children = parent.previousElementSibling;
-// parent.style.color = 'red';
-// parent.style.color = 'yellow'
-// console.log(parent)
-
-// createElement
-
-// 1. insertBefore
-// 2.appendChild = ar moddha obbosoy akta html element deta hoba. aktaay append korbaa last'A
-// 3. append= ar moddha amra jekono text dhukay deta parboo.Ak sthaa onk guloo dhukaay deta paboo problm neei
-
-
-// const firstElement = document.createElement('div');
-// firstElement.className = "task"
-// firstElement.setAttribute("id", "task")
-
-// const incomplete = document.getElementById("incomplete");
-
-// const h2Element = incomplete.elementsByTagName("ul");
-
-// incomplete.insertBefore(firstElement, h2Element)
-
+form.addEventListener('submit', addTask);
